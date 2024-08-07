@@ -1,5 +1,5 @@
 # Use the official Node.js image
-FROM node:14
+FROM node:21-alpine3.19
 
 # Set the working directory
 WORKDIR /app
@@ -13,11 +13,13 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Expose the frontend port
-EXPOSE 3000
 
 # Build the application using Vite
 RUN npm run build
 
+
+# Expose the frontend port
+EXPOSE 4173
+
 # Command to run the application
-CMD ["npm", "start"]
+CMD ["npm", "run", "preview", "--", "--host"]
